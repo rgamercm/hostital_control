@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Pacientes | Clínica Médica</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <i class="fas fa-hospital"></i>
+                    <span>Clínica Médica</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a class="active" href="/pacientes"><i class="fas fa-user-injured"></i> Pacientes</a></li>
+                    <li><a href="/medicos"><i class="fas fa-user-md"></i> Médicos</a></li>
+                    <li><a href="/ingresos"><i class="fas fa-procedures"></i> Ingresos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 class="section-title">
+            <i class="fas fa-user-injured"></i>
+            Gestión de Pacientes
+        </h1>
+        
+        <div class="card form-container">
+            <div class="card-header">
+                <h2 class="card-title" id="form-title">
+                    <i class="fas fa-plus-circle"></i> Registrar Nuevo Paciente
+                </h2>
+            </div>
+            <form id="pacienteForm">
+                <input type="hidden" id="pacienteId">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre"><i class="fas fa-id-card"></i> Nombre</label>
+                        <input type="text" id="nombre" class="form-control" placeholder="Ej: Juan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido"><i class="fas fa-id-card"></i> Apellido</label>
+                        <input type="text" id="apellido" class="form-control" placeholder="Ej: Pérez" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="direccion"><i class="fas fa-map-marker-alt"></i> Dirección</label>
+                    <input type="text" id="direccion" class="form-control" placeholder="Calle y número">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="poblacion"><i class="fas fa-city"></i> Población</label>
+                        <select id="poblacion" class="form-control">
+                            <option value="urbano">Urbano</option>
+                            <option value="rural">Rural</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="provincia"><i class="fas fa-map-marked-alt"></i> Provincia</label>
+                        <input type="text" id="provincia" class="form-control" placeholder="Ej: Buenos Aires">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="codigo_postal"><i class="fas fa-mail-bulk"></i> Código Postal</label>
+                        <input type="text" id="codigo_postal" class="form-control" placeholder="Ej: 1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono"><i class="fas fa-phone"></i> Teléfono</label>
+                        <input type="text" id="telefono" class="form-control" placeholder="Ej: 11 1234-5678">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fecha_nac"><i class="fas fa-birthday-cake"></i> Fecha de Nacimiento</label>
+                    <input type="date" id="fecha_nac" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Guardar
+                    </button>
+                    <button type="button" id="cancelEdit" class="btn btn-outline" style="display:none;">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <i class="fas fa-list"></i> Listado de Pacientes
+                </h2>
+            </div>
+            <div class="table-responsive">
+                <table class="table" id="pacientesTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Dirección</th>
+                            <th>Población</th>
+                            <th>Provincia</th>
+                            <th>Teléfono</th>
+                            <th>F. Nacimiento</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Datos se cargarán con JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/pacientes.js"></script>
+</body>
+</html>

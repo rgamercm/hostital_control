@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio | Clínica Médica</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <i class="fas fa-hospital"></i>
+                    <span>Clínica Médica</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a class="active" href="/"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="/pacientes"><i class="fas fa-user-injured"></i> Pacientes</a></li>
+                    <li><a href="/medicos"><i class="fas fa-user-md"></i> Médicos</a></li>
+                    <li><a href="/ingresos"><i class="fas fa-procedures"></i> Ingresos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 class="section-title">
+            <i class="fas fa-tachometer-alt"></i>
+            Panel de Administración
+        </h1>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <h3 class="stat-card-title">Pacientes Registrados</h3>
+                    <div class="stat-card-icon blue">
+                        <i class="fas fa-user-injured"></i>
+                    </div>
+                </div>
+                <p class="stat-card-value" id="pacientes-count">0</p>
+                <p class="text-muted">Total de pacientes en el sistema</p>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <h3 class="stat-card-title">Médicos Activos</h3>
+                    <div class="stat-card-icon green">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                </div>
+                <p class="stat-card-value" id="medicos-count">0</p>
+                <p class="text-muted">Profesionales disponibles</p>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <h3 class="stat-card-title">Ingresos Actuales</h3>
+                    <div class="stat-card-icon orange">
+                        <i class="fas fa-procedures"></i>
+                    </div>
+                </div>
+                <p class="stat-card-value" id="ingresos-count">0</p>
+                <p class="text-muted">Pacientes hospitalizados</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <i class="fas fa-chart-line"></i> Resumen de Actividad
+                </h2>
+            </div>
+            <div style="padding: 1.5rem;">
+                <p class="text-muted">Bienvenido al sistema de gestión de la clínica médica. Desde este panel podrás administrar pacientes, médicos y registros de ingresos hospitalarios.</p>
+                <p class="text-muted mt-3">Seleccione una opción del menú superior para comenzar.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cargar estadísticas
+            fetch('/api/pacientes/count')
+                .then(res => res.json())
+                .then(data => document.getElementById('pacientes-count').textContent = data.count);
+            
+            fetch('/api/medicos/count')
+                .then(res => res.json())
+                .then(data => document.getElementById('medicos-count').textContent = data.count);
+            
+            fetch('/api/ingresos/actuales/count')
+                .then(res => res.json())
+                .then(data => document.getElementById('ingresos-count').textContent = data.count);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Médicos | Clínica Médica</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <i class="fas fa-hospital"></i>
+                    <span>Clínica Médica</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="/pacientes"><i class="fas fa-user-injured"></i> Pacientes</a></li>
+                    <li><a class="active" href="/medicos"><i class="fas fa-user-md"></i> Médicos</a></li>
+                    <li><a href="/ingresos"><i class="fas fa-procedures"></i> Ingresos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 class="section-title">
+            <i class="fas fa-user-md"></i>
+            Gestión de Médicos
+        </h1>
+        
+        <div class="card form-container">
+            <div class="card-header">
+                <h2 class="card-title" id="form-title">
+                    <i class="fas fa-plus-circle"></i> Registrar Nuevo Médico
+                </h2>
+            </div>
+            <form id="medicoForm">
+                <input type="hidden" id="medicoId">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre"><i class="fas fa-id-card"></i> Nombre</label>
+                        <input type="text" id="nombre" class="form-control" placeholder="Ej: Carlos" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido"><i class="fas fa-id-card"></i> Apellido</label>
+                        <input type="text" id="apellido" class="form-control" placeholder="Ej: Gómez" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telefono"><i class="fas fa-phone"></i> Teléfono</label>
+                    <input type="text" id="telefono" class="form-control" placeholder="Ej: 11 9876-5432">
+                </div>
+                
+                <div class="form-group">
+                    <label for="especialidad"><i class="fas fa-stethoscope"></i> Especialidad</label>
+                    <input type="text" id="especialidad" class="form-control" placeholder="Ej: Cardiología" required>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Guardar
+                    </button>
+                    <button type="button" id="cancelEdit" class="btn btn-outline" style="display:none;">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <i class="fas fa-list"></i> Listado de Médicos
+                </h2>
+            </div>
+            <div class="table-responsive">
+                <table class="table" id="medicosTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Teléfono</th>
+                            <th>Especialidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Datos se cargarán con JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/medicos.js"></script>
+</body>
+</html>
