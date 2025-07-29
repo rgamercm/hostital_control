@@ -20,8 +20,31 @@ function showAlert(message, type = 'success') {
     }, 3000);
 }
 
+// Validación de campos
+function setupInputValidation() {
+    // Solo letras y espacios para nombres y apellidos
+    document.getElementById('nombre')?.addEventListener('input', function(e) {
+        this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+    });
+    
+    document.getElementById('apellido')?.addEventListener('input', function(e) {
+        this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+    });
+    
+    // Validación de teléfono (números, espacios, guiones y paréntesis)
+    document.getElementById('telefono')?.addEventListener('input', function(e) {
+        this.value = this.value.replace(/[^0-9\s\-\(\)]/g, '');
+    });
+    
+    // Solo letras y espacios para especialidad
+    document.getElementById('especialidad')?.addEventListener('input', function(e) {
+        this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('medicoForm')) {
+        setupInputValidation();
         cargarMedicos();
         document.getElementById('medicoForm').addEventListener('submit', guardarMedico);
         document.getElementById('cancelEdit').addEventListener('click', cancelarEdicion);

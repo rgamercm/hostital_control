@@ -31,8 +31,41 @@ function formatDate(dateString) {
     });
 }
 
+// Validación de campos
+function setupInputValidation() {
+    // Solo letras y espacios para nombres y apellidos
+    document.getElementById('nombre')?.addEventListener('input', function(e) {
+        this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+    });
+    
+    document.getElementById('apellido')?.addEventListener('input', function(e) {
+        this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+    });
+    
+    // Letras, números y caracteres comunes para direcciones
+    document.getElementById('direccion')?.addEventListener('input', function(e) {
+        this.value = this.value.replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s\.,#\-]/g, '');
+    });
+    
+    // Solo letras para provincia
+    document.getElementById('provincia')?.addEventListener('input', function(e) {
+        this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+    });
+    
+    // Solo números para código postal
+    document.getElementById('codigo_postal')?.addEventListener('input', function(e) {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+    
+    // Validación de teléfono (números, espacios, guiones y paréntesis)
+    document.getElementById('telefono')?.addEventListener('input', function(e) {
+        this.value = this.value.replace(/[^0-9\s\-\(\)]/g, '');
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('pacienteForm')) {
+        setupInputValidation();
         cargarPacientes();
         document.getElementById('pacienteForm').addEventListener('submit', guardarPaciente);
         document.getElementById('cancelEdit')?.addEventListener('click', cancelarEdicion);

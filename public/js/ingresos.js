@@ -31,12 +31,26 @@ function formatDate(dateString) {
     });
 }
 
+// Validación de campos
+function setupInputValidation() {
+    // Validación para habitación (letras y números)
+    document.getElementById('habitacion')?.addEventListener('input', function(e) {
+        this.value = this.value.replace(/[^a-zA-Z0-9]/g, '');
+    });
+    
+    // Validación para cama (letras y números)
+    document.getElementById('cama')?.addEventListener('input', function(e) {
+        this.value = this.value.replace(/[^a-zA-Z0-9]/g, '');
+    });
+}
+
 // Variables globales
 let currentIngresoId = null;
 
 document.addEventListener('DOMContentLoaded', function() {
     // Verificar que estamos en la página de ingresos
     if (document.getElementById('ingresosTable')) {
+        setupInputValidation();
         cargarIngresos();
         cargarSelectPacientes();
         cargarSelectMedicos();
