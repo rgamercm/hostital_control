@@ -84,16 +84,28 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Cargar estadísticas
             fetch('/api/pacientes/count')
-                .then(res => res.json())
-                .then(data => document.getElementById('pacientes-count').textContent = data.count);
+                .then(res => {
+                    if (!res.ok) throw new Error('Error al cargar contador de pacientes');
+                    return res.json();
+                })
+                .then(data => document.getElementById('pacientes-count').textContent = data.count)
+                .catch(err => console.error('Error:', err));
             
             fetch('/api/medicos/count')
-                .then(res => res.json())
-                .then(data => document.getElementById('medicos-count').textContent = data.count);
+                .then(res => {
+                    if (!res.ok) throw new Error('Error al cargar contador de médicos');
+                    return res.json();
+                })
+                .then(data => document.getElementById('medicos-count').textContent = data.count)
+                .catch(err => console.error('Error:', err));
             
             fetch('/api/ingresos/actuales/count')
-                .then(res => res.json())
-                .then(data => document.getElementById('ingresos-count').textContent = data.count);
+                .then(res => {
+                    if (!res.ok) throw new Error('Error al cargar contador de ingresos');
+                    return res.json();
+                })
+                .then(data => document.getElementById('ingresos-count').textContent = data.count)
+                .catch(err => console.error('Error:', err));
         });
     </script>
 </body>

@@ -28,6 +28,34 @@ app.get('/ingresos', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'ingresos.html'));
 });
 
+// API Contadores (deben ir antes de las otras rutas API)
+app.get('/api/pacientes/count', async (req, res) => {
+  try {
+    const result = await query('SELECT COUNT(*) as count FROM pacientes');
+    res.json({ count: result[0].count });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/medicos/count', async (req, res) => {
+  try {
+    const result = await query('SELECT COUNT(*) as count FROM medicos');
+    res.json({ count: result[0].count });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/ingresos/actuales/count', async (req, res) => {
+  try {
+    const result = await query('SELECT COUNT(*) as count FROM ingresos_paciente WHERE fecha_egreso IS NULL');
+    res.json({ count: result[0].count });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // API Pacientes
 app.get('/api/pacientes', async (req, res) => {
   try {
@@ -225,34 +253,6 @@ app.delete('/api/ingresos/:id', async (req, res) => {
     const { id } = req.params;
     await query('DELETE FROM ingresos_paciente WHERE cod_ingreso = ?', [id]);
     res.json({ success: true });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Contadores para el dashboard
-app.get('/api/pacientes/count', async (req, res) => {
-  try {
-    const result = await query('SELECT COUNT(*) as count FROM pacientes');
-    res.json({ count: result[0].count });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-app.get('/api/medicos/count', async (req, res) => {
-  try {
-    const result = await query('SELECT COUNT(*) as count FROM medicos');
-    res.json({ count: result[0].count });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-app.get('/api/ingresos/actuales/count', async (req, res) => {
-  try {
-    const result = await query('SELECT COUNT(*) as count FROM ingresos_paciente WHERE fecha_egreso IS NULL');
-    res.json({ count: result[0].count });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
